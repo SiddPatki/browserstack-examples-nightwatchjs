@@ -44,9 +44,27 @@ for (let key in bsConfig) {
 			}
 			browserstackRunConfig["desiredCapabilities"].build =
 				process.env.BROWSERSTACK_BUILD_NAME ||
-				bsConfig.build +
-					"-" +
-					Math.trunc(new Date().getTime() / 10000).toString();
+					bsConfig.build + "-"
+					+ Math.trunc(new Date().getTime() / 10000).toString();
+			if(process.env.JOB_NAME && process.env.BUILD_NUMBER){
+				browserstackRunConfig["desiredCapabilities"].build =
+					process.env.JOB_NAME + ": " + process.env.BUILD_NUMBER;
+			}
+			var tags = "";
+			for(var i=0; i < process.argv.length; i++) {
+				if(process.argv[i] == "--tag" && i+1 < process.argv.length) {
+					if (tags.length < 1) {
+						tags = process.argv[i+1];
+					} else {
+						tags += " " + process.argv[i+1];
+					}
+				}
+			}
+			if (tags.length > 0) {
+				browserstackRunConfig["desiredCapabilities"].build =
+					"[" + tags + "]"
+					+ browserstackRunConfig["desiredCapabilities"].build
+			}
 			break;
 		case "project":
 			if (browserstackRunConfig["desiredCapabilities"] === undefined) {
