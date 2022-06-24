@@ -19,7 +19,11 @@
 		"bstack-parallel-multiple": "nightwatch -c resources/conf/runners/browserstack.js --env chrome,edge,safari,android,iphone --parallel",
 		"bstack-local": "node ./resources/conf/runners/browserstack_local.js -c resources/conf/runners/browserstack.js --env chrome_local --tag single",
 		"bstack-local-parallel": "node ./resources/conf/runners/browserstack_local.js -c resources/conf/runners/browserstack.js --env chrome_local --parallel",
-		"bstack-local-parallel-multiple": "node ./resources/conf/runners/browserstack_local.js -c resources/conf/runners/browserstack.js --env chrome_local,edge_local,safari_local,android_local,iphone_local --parallel"
+		"bstack-local-parallel-multiple": "node ./resources/conf/runners/browserstack_local.js -c resources/conf/runners/browserstack.js --env chrome_local,edge_local,safari_local,android_local,iphone_local --parallel",
+		"bstack-parallel-offers": "nightwatch -c resources/conf/runners/browserstack.js --env chrome,edge,safari --parallel --tag offers",
+		"bstack-parallel-e2e": "nightwatch -c resources/conf/runners/browserstack.js --env chrome,edge,safari --parallel --tag e2e",
+		"bstack-parallel-data-driven": "nightwatch -c resources/conf/runners/browserstack.js --env chrome,edge,safari --parallel --tag data-driven",
+		"bstack-parallel-offers-e2e": "nightwatch -c resources/conf/runners/browserstack.js --env chrome,edge,safari --parallel --tag offers --tag e2e"
 	},
 	"devDependencies": {
 		"allure-commandline": "2.13.8",
